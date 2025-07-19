@@ -62,22 +62,13 @@ def list_collaborators():
 	return "no collaborators."
 
 def run_attack():
-    deny1 = b"Access Denied!!!"                  
-    deny2 = b"\xff" + b"\x00"*15                
-    tag2  = query_auth_server(deny1+deny2)      
+    denied  = b"Access Denied!!!"  
+    granted = b"Access Granted!!"   
 
-    tag1  = query_auth_server(deny1)            
+   
+    forged_tag = query_auth_server(denied + granted + denied)
 
-    grant1 = b"Access Granted!!"                
-    grant2 = deny2                              
-
-
-    forged_tag = xor_bytestrings(
-                    tag1,
-                    tag2
-                 )                               
-
-    forged_msg = grant1 + grant2
+    forged_msg = granted                       
     return forged_msg, forged_tag
 
 # ------------------------------------------------------------------------------
