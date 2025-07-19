@@ -64,7 +64,7 @@ def run_attack():
 	# TODO: your code here!
 	denied_pkt = b"Access Denied!!!"
 	denied_tag = query_auth_server(denied_pkt)
-	granted_packet= b"Access Granted!!!"
+	granted_packet= b"Access Granted!!"
 	return granted_packet, denied_tag
 
 	# You should return a tuple consisting of
